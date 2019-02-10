@@ -17,12 +17,6 @@ class ReduxPractice extends React.Component{
 	componentDidMount(){
         this.getAllApiData();
     }
-    
-    componentWillReceiveProps(){
-        if(this.props.posts.length === 0){
-            this.props.searchApi(this.state.allApiData);
-        }
-    }
 
 	getAllApiData = () => {
 		const status = response => {
