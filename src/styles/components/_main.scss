@@ -1,0 +1,94 @@
+.container{
+    max-width:1200px;
+    margin:0 auto;
+    position:relative;
+    width:100%;
+}
+.flex_container{
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+.left{float:left;}
+.right{float:right;}
+.clear{clear:both;}
+.playlist{
+    color:#fff;
+    justify-content:space-between;
+}
+.display_none{display:none;}
+
+.control_container{
+    background-color:#080C19;
+    flex-basis:15%;
+}
+.control_container img{
+    width: 60%;
+    margin:10px 0px 0px 10px;
+}
+.playlist_container{
+    flex-basis:85%;
+}
+.playlist_items{
+    background-color: #1F3261;
+    -webkit-transition: background-color 0.5s ease-out;
+    -moz-transition: background-color 0.5s ease-out;
+    -ms-transition: background-color 0.5s ease-out;
+    -o-transition: background-color 0.5s ease-out;
+    transition: background-color 0.5s ease-out;
+}
+.active{
+    background-color: #121A35;
+}
+.icons{
+    color:#fff;
+    font-size: 24px;
+    text-decoration:none;
+}
+.title{margin-left:10px;}
+.title span{margin-left:10px;}
+.icons_symbol{margin-right:10px;}
+audio{
+    width:100%;
+}
+.control_container p{margin-left:10px;}
+
+@media only screen and (max-width:450px){
+    .title,.control_container p{font-size:14px;}
+    .icons{font-size:20px;}
+}
+
+@media only screen and (max-width:350px){
+    .title,.control_container p{font-size:12px;}
+    .icons{font-size:18px;}
+}
+
+@media only screen and (max-width:300px){
+    .title,.control_container p{font-size:10px;}
+    .icons{font-size:16px;}
+}
+
+.taskApp{
+    margin:0 auto;
+    max-width:248px;
+    width:100%;
+}
+.updateBtnContainer, .deleteBtnContainer{
+    text-align: center;
+    padding: 4px 0px;
+    width:50%;
+}
+.updateBtnContainer{
+    background-color: #4DBD33;
+}
+.deleteBtnContainer{
+    background-color: #ff3232;
+}
+.updateBtn, .deleteBtn{
+    color:#fff;
+    margin-bottom:10px;
+    text-decoration: none;
+}
+
