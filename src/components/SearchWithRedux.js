@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import {bindActionCreators} from 'redux';
 import { searchApi } from "../redux/actions/SearchWithRedux";
+import { searchString } from "../redux/actions/searchString";
 import SearchWithReduxTable from './SearchWithReduxTable';
 
 /* style components */
@@ -80,6 +81,7 @@ class SearchWithRedux extends React.Component{
     submitPostSearch = (event) => {
         if(this.ifKeyCode(event) == 13) {
             this.props.searchApi(this.filterApi("body", event.target.value));
+            this.props.searchString(event.target.value);
         }
         
     }
@@ -87,6 +89,7 @@ class SearchWithRedux extends React.Component{
     submitTitleSearch = (event) => {
         if(this.ifKeyCode(event) == 13){
             this.props.searchApi(this.filterApi("title", event.target.value));
+            this.props.searchString(event.target.value);
         }
     }
 
@@ -142,12 +145,14 @@ class SearchWithRedux extends React.Component{
 
 const mapStateToProps = (state, props) => {    
 	return {
-		posts: state.posts
+        posts: state.posts,
+        searchWord: state.searchWord
 	};
 };
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        searchApi
+        searchApi,
+        searchString
     },dispatch)
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SearchWithRedux);

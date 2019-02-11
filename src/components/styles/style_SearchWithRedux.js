@@ -27,4 +27,8 @@ const TableSearchResultsData = styled.td`
     padding: 5px;
 `;
 
-export {InputSearch, InputSearchContainer, TableSearchResults, TableSearchResultsHead, TableSearchResultsData};
+const HighlightSpan = styled.span`
+    color:red;
+`;
+
+export {InputSearch, InputSearchContainer, TableSearchResults, TableSearchResultsHead, TableSearchResultsData, HighlightSpan};
