@@ -4,6 +4,10 @@ import {bindActionCreators} from 'redux';
 import { searchApi } from "../redux/actions/SearchWithRedux";
 import SearchWithReduxTable from './SearchWithReduxTable';
 
+/* style components */
+import { Container } from "./styles/style_Base";
+import { InputSearch, InputSearchContainer, TableSearchResults, TableSearchResultsHead } from "./styles/style_SearchWithRedux";
+
 class SearchWithRedux extends React.Component{
 	constructor(props){
         super(props);
@@ -88,30 +92,32 @@ class SearchWithRedux extends React.Component{
 
 	render(){
 		return(
-			<section id="redux_practice">
-				<div className="container">
-                    <input 
-                        type="text" 
-                        onChange={this.searchPostOnChange} 
-                        value={this.state.searchPost}
-                        onKeyPress={this.submitPostSearch}
-                        placeholder="SEARCH BY POST"
-                    >
-                    </input>
-                    <input
-                        type="text"
-                        onChange={this.searchTitleOnChange}
-                        value={this.state.searchTitle}
-                        onKeyPress={this.submitTitleSearch}
-                        placeholder="SEARCH BY TITLE"
-                    >
-                    </input>
-                    <table>
+			<section id="main">
+				<Container>
+                    <InputSearchContainer>
+                        <InputSearch 
+                            type="text" 
+                            onChange={this.searchPostOnChange} 
+                            value={this.state.searchPost}
+                            onKeyPress={this.submitPostSearch}
+                            placeholder="SEARCH BY POST"
+                        >
+                        </InputSearch>
+                        <InputSearch
+                            type="text"
+                            onChange={this.searchTitleOnChange}
+                            value={this.state.searchTitle}
+                            onKeyPress={this.submitTitleSearch}
+                            placeholder="SEARCH BY TITLE"
+                        >
+                        </InputSearch>
+                    </InputSearchContainer>
+                    <TableSearchResults>
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>TITLE</th>
-                                <th>POST</th>
+                                <TableSearchResultsHead>ID</TableSearchResultsHead>
+                                <TableSearchResultsHead>TITLE</TableSearchResultsHead>
+                                <TableSearchResultsHead>POST</TableSearchResultsHead>
                             </tr>
                         </thead>
                         <tbody>
@@ -127,8 +133,8 @@ class SearchWithRedux extends React.Component{
                                 )
                         }
                         </tbody>
-                    </table>
-				</div>
+                    </TableSearchResults>
+				</Container>
 			</section>
 		)
 	}

@@ -1,11 +1,12 @@
 import React from "react";
+import { TableSearchResultsData } from "./styles/style_SearchWithRedux";
 
 const SearchWithRedux = (props) => {
 	return(
 		<tr key={props.id}>
-			<td>{props.id}</td>
-			<td>{props.title}</td>
-			<td>{props.body}</td>
+			<TableSearchResultsData>{props.id}</TableSearchResultsData>
+			<TableSearchResultsData>{props.title}</TableSearchResultsData>
+			<TableSearchResultsData>{props.body}</TableSearchResultsData>
 		</tr>
 	);
 }
