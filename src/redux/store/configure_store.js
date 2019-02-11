@@ -1,6 +1,6 @@
 /*Store creation*/
 import { createStore, combineReducers} from "redux";
-import postsReducer from '../reducers/reduxPractice';
+import postsReducer from '../reducers/SearchWithRedux';
 
 export default () => {
 	const store = createStore(

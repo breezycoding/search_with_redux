@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import {bindActionCreators} from 'redux';
-import { searchApi } from "../redux/actions/reduxPractice";
-import ReduxPracticeTable from './ReduxPracticeTable';
+import { searchApi } from "../redux/actions/SearchWithRedux";
+import SearchWithReduxTable from './SearchWithReduxTable';
 
-class ReduxPractice extends React.Component{
+class SearchWithRedux extends React.Component{
 	constructor(props){
         super(props);
         this.state = {
@@ -117,13 +117,13 @@ class ReduxPractice extends React.Component{
                         <tbody>
                         {
                             this.props.posts && this.props.posts.map((post, index) => 
-                                <ReduxPracticeTable key={index} {...post}/>
+                                <SearchWithReduxTable key={index} {...post}/>
                             )
                         }
                         {
                             this.props.posts.length === 0 &&
                                 this.state.allApiData.map((post, index) => 
-                                    <ReduxPracticeTable key={index} {...post}/>
+                                    <SearchWithReduxTable key={index} {...post}/>
                                 )
                         }
                         </tbody>
@@ -144,4 +144,4 @@ const mapDispatchToProps = (dispatch) => {
         searchApi
     },dispatch)
 };
-export default connect(mapStateToProps, mapDispatchToProps)(ReduxPractice);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchWithRedux);

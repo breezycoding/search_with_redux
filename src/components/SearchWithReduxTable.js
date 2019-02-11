@@ -1,6 +1,6 @@
 import React from "react";
 
-const ReduxPracticeTable = (props) => {
+const SearchWithRedux = (props) => {
 	return(
 		<tr key={props.id}>
 			<td>{props.id}</td>
@@ -10,4 +10,4 @@ const ReduxPracticeTable = (props) => {
 	);
 }
 
-export default ReduxPracticeTable;
+export default SearchWithRedux;

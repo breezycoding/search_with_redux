@@ -1,14 +1,12 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import ReduxPractice from "../components/ReduxPractice";
+import SearchWithRedux from "../components/SearchWithRedux";
 
 const App_router = () => (
 	<BrowserRouter>
-		<div>
-			<Switch>
-				<Route path="/" component={ReduxPractice} exact={true}/>
-			</Switch>	
-		</div>
+		<Switch>
+			<Route path="/" component={SearchWithRedux} exact={true}/>
+		</Switch>	
 	</BrowserRouter>
 );
 
