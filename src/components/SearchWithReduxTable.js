@@ -7,8 +7,6 @@ import SearchString from "./SearchString";
 class SearchWithReduxTable extends React.Component{
 	constructor(props){
         super(props);
-        this.state = {
-        }
 	}
 
 	render(){
