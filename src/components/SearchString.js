@@ -13,17 +13,17 @@ class SearchString extends React.Component{
 	render(){
 		return(
 			<section id="search_string">
-				<Container>
+				<Container key={this.props.id}>
                    { 
-                       this.props.body.split(" ").map((post) => {
-                            if(post.toLowerCase() === this.props.searchWord.toLowerCase()){
+                       this.props[this.props.renderTitleOrBody].split(" ").map((post) => {
+                            if(post.toLowerCase() === this.props.searchStringObj.searchValue.toLowerCase()){
                                 return (<HighlightSpan>{post}</HighlightSpan>)
                             }else{
                                 /*check if string contains line break(api limitation) */
                                 if(/\r|\n/.exec(post) !== null){
                                     /*check if string contains line break(api limitation) the convert it into array*/
                                     return post.replace(/(\r\n|\n|\r)/gm," ").split(" ").map((innerText) => {
-                                        if(innerText.toLowerCase() == this.props.searchWord.toLowerCase()){
+                                        if(innerText.toLowerCase() == this.props.searchStringObj.searchValue.toLowerCase()){
                                             return (<HighlightSpan>{innerText}</HighlightSpan>)
                                         }else{
                                             return " " + innerText + " ";
@@ -43,7 +43,7 @@ class SearchString extends React.Component{
 
 const mapStateToProps = (state, props) => {    
 	return {
-        searchWord: state.searchWord
+        searchStringObj: state.searchStringObj
 	};
 };
 

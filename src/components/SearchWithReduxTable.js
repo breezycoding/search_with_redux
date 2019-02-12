@@ -6,17 +6,34 @@ import SearchString from "./SearchString";
 
 class SearchWithReduxTable extends React.Component{
 	constructor(props){
-        super(props);
+		super(props);
 	}
 
 	render(){
 		return(
 			<tr key={this.props.id}>
 				<TableSearchResultsData>{this.props.id}</TableSearchResultsData>
-				<TableSearchResultsData>{this.props.title}</TableSearchResultsData>
 				<TableSearchResultsData>
-					{!this.props.searchWord && (<div>{this.props.body}</div>)}
-					{this.props.searchWord && (<SearchString {...this.props}/>)}
+					{
+						(() => {
+							if(Object.keys(this.props.searchStringObj).length === 0 || this.props.searchStringObj.searchKey === "postSearch"){
+								return (<div>{this.props.title}</div>);
+							}else if(this.props.searchStringObj.searchKey === "titleSearch"){
+								return (<SearchString renderTitleOrBody="title" {...this.props}/>);
+							}
+						})()
+					}
+				</TableSearchResultsData>
+				<TableSearchResultsData>
+					{
+						(() => {
+							if(Object.keys(this.props.searchStringObj).length === 0 || this.props.searchStringObj.searchKey === "titleSearch"){
+								return (<div>{this.props.body}</div>);
+							}else if(this.props.searchStringObj.searchKey === "postSearch"){
+								return (<SearchString renderTitleOrBody="body" {...this.props}/>);
+							}
+						})()
+					}
 				</TableSearchResultsData>
 			</tr>
 		)
@@ -25,7 +42,7 @@ class SearchWithReduxTable extends React.Component{
 
 const mapStateToProps = (state, props) => {    
 	return {
-        searchWord: state.searchWord
+		searchStringObj: state.searchStringObj
 	};
 };
 

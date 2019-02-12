@@ -28,7 +28,9 @@ const TableSearchResultsData = styled.td`
 `;
 
 const HighlightSpan = styled.span`
-    color:red;
+    background-color:red;
+    color:white;
+    padding:1px;
 `;
 
 export {InputSearch, InputSearchContainer, TableSearchResults, TableSearchResultsHead, TableSearchResultsData, HighlightSpan};

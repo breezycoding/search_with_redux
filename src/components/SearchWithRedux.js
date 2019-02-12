@@ -81,15 +81,14 @@ class SearchWithRedux extends React.Component{
     submitPostSearch = (event) => {
         if(this.ifKeyCode(event) == 13) {
             this.props.searchApi(this.filterApi("body", event.target.value));
-            this.props.searchString(event.target.value);
+            this.props.searchString({searchKey:"postSearch" ,searchValue:event.target.value});
         }
-        
     }
 
     submitTitleSearch = (event) => {
         if(this.ifKeyCode(event) == 13){
             this.props.searchApi(this.filterApi("title", event.target.value));
-            this.props.searchString(event.target.value);
+            this.props.searchString({searchKey:"titleSearch", searchValue:event.target.value, });   
         }
     }
 
@@ -98,20 +97,20 @@ class SearchWithRedux extends React.Component{
 			<section id="main">
 				<Container>
                     <InputSearchContainer>
-                        <InputSearch 
-                            type="text" 
-                            onChange={this.searchPostOnChange} 
-                            value={this.state.searchPost}
-                            onKeyPress={this.submitPostSearch}
-                            placeholder="SEARCH BY POST"
-                        >
-                        </InputSearch>
                         <InputSearch
                             type="text"
                             onChange={this.searchTitleOnChange}
                             value={this.state.searchTitle}
                             onKeyPress={this.submitTitleSearch}
                             placeholder="SEARCH BY TITLE"
+                        >
+                        </InputSearch>
+                        <InputSearch 
+                            type="text" 
+                            onChange={this.searchPostOnChange} 
+                            value={this.state.searchPost}
+                            onKeyPress={this.submitPostSearch}
+                            placeholder="SEARCH BY POST"
                         >
                         </InputSearch>
                     </InputSearchContainer>
@@ -145,8 +144,7 @@ class SearchWithRedux extends React.Component{
 
 const mapStateToProps = (state, props) => {    
 	return {
-        posts: state.posts,
-        searchWord: state.searchWord
+        posts: state.posts
 	};
 };
 const mapDispatchToProps = (dispatch) => {

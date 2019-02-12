@@ -1,6 +1,9 @@
-export const searchString = (stringWord = "") => {
+export const searchString = ({searchValue = "",searchKey = ""} = {}) => {
     return{
         type: "STRING_WORD",
-        stringWord
+        searchString:{
+            searchValue,
+            searchKey
+        }
     }
 }
