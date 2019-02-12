@@ -3,7 +3,11 @@ import { connect } from "react-redux";
 import {bindActionCreators} from 'redux';
 import { searchApi } from "../redux/actions/SearchWithRedux";
 import { searchString } from "../redux/actions/searchString";
+import { getPostsDataApi } from "../redux/actions/getPostsDataApi";
 import SearchWithReduxTable from './SearchWithReduxTable';
+
+/*service calls*/
+import { getAllApiData } from "../service_calls/fetchPost";
 
 /* style components */
 import { Container } from "./styles/style_Base";
@@ -150,7 +154,8 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         searchApi,
-        searchString
+        searchString,
+        getPostsDataApi
     },dispatch)
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SearchWithRedux);
