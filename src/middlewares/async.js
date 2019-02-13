@@ -16,7 +16,7 @@ export default ({ dispatch }) => {
             next means send this action to the next middleware stack if we dont have any other middleware its going to be forwarded to reducers
         */
 
-        //for data verification in status
+        //for data verification in response.status
         const status = (response) => {
 			if (response.status >= 200 && response.status < 300) {
 				console.log("response.status:", response.status);
@@ -28,7 +28,7 @@ export default ({ dispatch }) => {
 			//returns error in catch
 			return Promise.reject(new Error(response.statusText))
 		}
-        //for data verification in status
+        //for data verification in response.status
         
         //steps to take to resolve ouf promise
         //1. Make sure the action's promise resolves
