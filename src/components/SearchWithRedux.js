@@ -6,9 +6,6 @@ import { searchString } from "../redux/actions/searchString";
 import { getPostsDataApi } from "../redux/actions/getPostsDataApi";
 import SearchWithReduxTable from './SearchWithReduxTable';
 
-/*service calls*/
-import { getAllApiData } from "../service_calls/fetchPost";
-
 /* style components */
 import { Container } from "./styles/style_Base";
 import { InputSearch, InputSearchContainer, TableSearchResults, TableSearchResultsHead } from "./styles/style_SearchWithRedux";
@@ -18,44 +15,13 @@ class SearchWithRedux extends React.Component{
         super(props);
         this.state = {
             searchPost:"",
-            searchTitle: "", 
-            allApiData:[]
+            searchTitle: ""
         }
 	}
 
-	componentDidMount(){
-        this.getAllApiData();
+	componentWillMount(){
+        this.props.getPostsDataApi();
     }
-
-	getAllApiData = () => {
-		const status = response => {
-			if (response.status >= 200 && response.status < 300) {
-				console.log("response.status:", response.status);
-				//return the data from fetch 
-				return Promise.resolve(response)
-			}else
-				console.log("response.status:", response.status);
-
-			//returns error in catch
-			return Promise.reject(new Error(response.statusText))
-		}
-
-		fetch("https://jsonplaceholder.typicode.com/posts")
-			.then(status)
-			.then(response => response.json())
-			.then(data => {
-                if(data.length > 0){
-                    this.setState((previousState) => {
-                        return{
-                            allApiData:previousState.allApiData.concat(data)
-                        } 
-                    });
-                }
-			})
-			.catch(error => {
-				console.log("api error: ", error);
-            });
-	}
 
     searchPostOnChange = (event) => {
         this.setState({
@@ -74,7 +40,7 @@ class SearchWithRedux extends React.Component{
     ifKeyCode = (event) => (event.keyCode ? event.keyCode : event.which);
 
     filterApi = (apiKey, toSearchValue) => {
-        return this.state.allApiData && this.state.allApiData.filter(data => {
+        return this.props.postsData && this.props.postsData.filter(data => {
             if(data[apiKey]){
                 return data[apiKey].indexOf(toSearchValue) !== -1;
             }else
@@ -133,10 +99,10 @@ class SearchWithRedux extends React.Component{
                             )
                         }
                         {
-                            this.props.posts.length === 0 &&
-                                this.state.allApiData.map((post, index) => 
-                                    <SearchWithReduxTable key={index} {...post}/>
-                                )
+                            this.props.posts.length === 0 && 
+                                Object.keys(this.props.postsData).map((i) =>{
+                                    return(<SearchWithReduxTable key={i} {...this.props.postsData[i]}/>)
+                                })
                         }
                         </tbody>
                     </TableSearchResults>
@@ -148,7 +114,8 @@ class SearchWithRedux extends React.Component{
 
 const mapStateToProps = (state, props) => {    
 	return {
-        posts: state.posts
+        posts: state.posts, 
+        postsData: state.postsData
 	};
 };
 const mapDispatchToProps = (dispatch) => {
