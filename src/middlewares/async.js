@@ -6,7 +6,7 @@ export default ({ dispatch }) => {
     return next => action => {
         /*this is the case when we have different action creators that doesnt have promises. we do the code below in this scenario
         if action does not contain payload/data or if payload does not have .then property, we dont care about it, just send it on*/
-        if(!action.data || !action.data.then){
+        if(!action.payload || !action.payload.then){
             /*push it to the next middleware*/
             return next(action);
         }
@@ -32,11 +32,11 @@ export default ({ dispatch }) => {
         
         //steps to take to resolve ouf promise
         //1. Make sure the action's promise resolves
-        action.data
+        action.payload
             .then(status)
             .then(response => {
                 //2.create a new action with old type, but replace the promise with the response data not the promise
-                const newAction = {...action, data: response};
+                const newAction = {...action, payload: response};
                 //3.dispatch sends a brand new action to reducer
                 dispatch(newAction);
                 //dispatch is creating brand new actions that will be sent to reducer, next is sending the action to the next middleware

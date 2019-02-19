@@ -5,6 +5,7 @@ import postsReducer from '../reducers/SearchWithRedux';
 import SearchStringReducer from '../reducers/SearchString';
 import postsDataReducer from "../reducers/getPostsDataApi";
 import usersReducer from "../reducers/getAllUsers";
+import selectedUserReducer from "../reducers/selectedUser";
 
 export default () => {
 	const middleware = applyMiddleware(Async);
@@ -13,8 +14,8 @@ export default () => {
 			posts: postsReducer,
 			searchStringObj: SearchStringReducer,
 			users: usersReducer,
-			postsData: postsDataReducer
-			
+			postsData: postsDataReducer,
+			currentUser:selectedUserReducer
 		}),
 		compose(middleware)
 	);

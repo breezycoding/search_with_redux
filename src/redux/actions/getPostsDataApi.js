@@ -5,6 +5,6 @@ export const getPostsDataApi = () => {
     const apiPosts = getAllApiData();
     return{
         type:"GET_POST_DATA",
-        data: apiPosts
+        payload: apiPosts
     }
 }
