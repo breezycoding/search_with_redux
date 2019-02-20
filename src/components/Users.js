@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getAllUsers } from './../redux/actions/getAllUsers';
 import { selectedUser } from './../redux/actions/selectedUser';
+import { User } from './User';
 
 
 class Users extends React.Component{
@@ -25,28 +26,7 @@ class Users extends React.Component{
         this.props.selectedUser(this.props.users[ArrId]);
     }
 
-    currentUser = () => {
-        const { id, name, username, email, address, phone, website, company} = this.props.currentUser;
-        const { street, suite, city, zipcode} = address;
-        const {companyName, catchPhrase, bs} = company;
-        return(
-            <div>
-                <p>id: {id}</p>
-                <p>name: {name}</p>
-                <p>username: {username}</p>
-                <p>email: {email}</p>
-                <p>address: {suite} {street} {city} {zipcode}</p>
-                <p>phone: {phone}</p>
-                <p>website: {website}</p>
-                <p>company name: {companyName}</p>
-                <p>catchPhrase: {catchPhrase}</p>
-                <p>bs: {bs}</p>
-            </div>
-        );
-    }
-
 	render(){
-        console.log(this.props.currentUser);
 		return(
 			<section id="users">
 				<Container>
@@ -60,7 +40,15 @@ class Users extends React.Component{
                         }
                     </select>
                     {
-                        Object.keys(this.props.currentUser).length !== 0 && this.currentUser()
+                        (() => {
+                            if(Object.keys(this.props.currentUser).length !== 0){
+                                return <User {...this.props.currentUser}/>;
+                            }else{
+                                return Object.keys(this.props.users).map((index) => {
+                                    return(<User key={this.props.users[index].id} {...this.props.users[index]}/>);
+                                });
+                            }
+                        })()
                     }
 				</Container>
 			</section>
@@ -69,7 +57,6 @@ class Users extends React.Component{
 }
 
 const mapStateToProps = (state, props) => {
-    console.log(state);
     return{
         users: state.users,
         currentUser: state.currentUser
