@@ -1,4 +1,5 @@
 import React from "react";
+import UserWithPosts from "./UserWithPosts";
 
 export const User = (props) => {
     const { id, name, username, email, address, phone, website, company} = props;
@@ -16,6 +17,7 @@ export const User = (props) => {
             <p>company name: {companyName}</p>
             <p>catchPhrase: {catchPhrase}</p>
             <p>bs: {bs}</p>
+            <UserWithPosts id={id} />
         </div>
     );
 }
