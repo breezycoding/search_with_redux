@@ -22,6 +22,8 @@ class UserWithPosts extends React.Component{
             Object.keys(this.props.postsData).map(index => {
                 if(this.props.postsData[index].userId === this.props.id){
                     arrUserPosts.push(this.props.postsData[index]);
+                }else{
+                    arrUserPosts = [];
                 }
             });
             this.setState({
