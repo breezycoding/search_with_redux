@@ -2,9 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 /* styled components */
 import { TableSearchResultsData } from "./styles/style_SearchWithRedux";
-import SearchString from "./SearchString";
+import PostSearchString from "./PostSearchString";
 
-class SearchWithReduxTable extends React.Component{
+class Post extends React.Component{
 	constructor(props){
 		super(props);
 	}
@@ -19,7 +19,7 @@ class SearchWithReduxTable extends React.Component{
 							if(Object.keys(this.props.searchStringObj).length === 0 || this.props.searchStringObj.searchKey === "postSearch"){
 								return (<div>{this.props.title}</div>);
 							}else if(this.props.searchStringObj.searchKey === "titleSearch"){
-								return (<SearchString renderTitleOrBody="title" {...this.props}/>);
+								return (<PostSearchString renderTitleOrBody="title" {...this.props}/>);
 							}
 						})()
 					}
@@ -30,7 +30,7 @@ class SearchWithReduxTable extends React.Component{
 							if(Object.keys(this.props.searchStringObj).length === 0 || this.props.searchStringObj.searchKey === "titleSearch"){
 								return (<div>{this.props.body}</div>);
 							}else if(this.props.searchStringObj.searchKey === "postSearch"){
-								return (<SearchString renderTitleOrBody="body" {...this.props}/>);
+								return (<PostSearchString renderTitleOrBody="body" {...this.props}/>);
 							}
 						})()
 					}
@@ -46,4 +46,4 @@ const mapStateToProps = (state, props) => {
 	};
 };
 
-export default connect(mapStateToProps, null)(SearchWithReduxTable);
+export default connect(mapStateToProps, null)(Post);

@@ -4,13 +4,13 @@ import {bindActionCreators} from 'redux';
 import { searchApi } from "../redux/actions/SearchWithRedux";
 import { searchString } from "../redux/actions/searchString";
 import { getPostsDataApi } from "../redux/actions/getPostsDataApi";
-import SearchWithReduxTable from './SearchWithReduxTable';
+import Post from './Post';
 
 /* style components */
 import { Container } from "./styles/style_Base";
 import { InputSearch, InputSearchContainer, TableSearchResults, TableSearchResultsHead } from "./styles/style_SearchWithRedux";
 
-class SearchWithRedux extends React.Component{
+class Posts extends React.Component{
 	constructor(props){
         super(props);
         this.state = {
@@ -95,13 +95,13 @@ class SearchWithRedux extends React.Component{
                         <tbody>
                         {
                             this.props.posts && this.props.posts.map((post, index) => 
-                                <SearchWithReduxTable key={index} {...post}/>
+                                <Post key={index} {...post}/>
                             )
                         }
                         {
                             this.props.posts.length === 0 && 
                                 Object.keys(this.props.postsData).map((i) =>{
-                                    return(<SearchWithReduxTable key={i} {...this.props.postsData[i]}/>)
+                                    return(<Post key={i} {...this.props.postsData[i]}/>)
                                 })
                         }
                         </tbody>
@@ -125,4 +125,4 @@ const mapDispatchToProps = (dispatch) => {
         getPostsDataApi
     },dispatch)
 };
-export default connect(mapStateToProps, mapDispatchToProps)(SearchWithRedux);
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);

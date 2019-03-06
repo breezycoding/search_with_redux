@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { Container } from "./styles/style_Base";
 import { HighlightSpan } from "./styles/style_SearchWithRedux";
 
-class SearchString extends React.Component{
+class PostSearchString extends React.Component{
 	constructor(props){
         super(props);
     }
@@ -47,4 +47,4 @@ const mapStateToProps = (state, props) => {
 	};
 };
 
-export default connect(mapStateToProps, null)(SearchString);
+export default connect(mapStateToProps, null)(PostSearchString);
