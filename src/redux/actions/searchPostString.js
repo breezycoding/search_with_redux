@@ -1,4 +1,4 @@
-export const searchString = ({searchValue = "",searchKey = ""} = {}) => {
+export const searchPostStringAction = ({searchValue = "",searchKey = ""} = {}) => {
     return{
         type: "STRING_WORD",
         searchString:{

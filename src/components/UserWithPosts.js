@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { getPostsDataApi } from "../redux/actions/getPostsDataApi";
+import { getAllPostsAction } from "../redux/actions/getAllPosts";
 import { filter } from './../../../haystak/hs-sample/src/redux-store/reducers/filter-reducer';
 
 
@@ -16,7 +16,7 @@ class UserWithPosts extends React.Component{
     }
 
     showUserPosts = () => {
-        this.props.getPostsDataApi();
+        this.props.getAllPostsAction();
         if(this.props.postsData){
             let arrUserPosts = []
             Object.keys(this.props.postsData).map(index => {
@@ -62,7 +62,7 @@ const mapStateToProps = (state, props) => {
 
 const mapsDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        getPostsDataApi
+        getAllPostsAction
     },dispatch)
 }
 

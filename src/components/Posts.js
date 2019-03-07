@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import {bindActionCreators} from 'redux';
-import { searchApi } from "../redux/actions/SearchWithRedux";
-import { searchString } from "../redux/actions/searchString";
-import { getPostsDataApi } from "../redux/actions/getPostsDataApi";
+import { searchPostResultsAction } from "../redux/actions/searchPostResults";
+import { searchPostStringAction } from "../redux/actions/searchPostString";
+import { getAllPostsAction } from "../redux/actions/getAllPosts";
 import Post from './Post';
 
 /* style components */
@@ -20,7 +20,7 @@ class Posts extends React.Component{
 	}
 
 	componentWillMount(){
-        this.props.getPostsDataApi();
+        this.props.getAllPostsAction();
     }
 
     searchPostOnChange = (event) => {
@@ -50,15 +50,15 @@ class Posts extends React.Component{
 
     submitPostSearch = (event) => {
         if(this.ifKeyCode(event) == 13) {
-            this.props.searchApi(this.filterApi("body", event.target.value));
-            this.props.searchString({searchKey:"postSearch" ,searchValue:event.target.value});
+            this.props.searchPostResultsAction(this.filterApi("body", event.target.value));
+            this.props.searchPostStringAction({searchKey:"postSearch" ,searchValue:event.target.value});
         }
     }
 
     submitTitleSearch = (event) => {
         if(this.ifKeyCode(event) == 13){
-            this.props.searchApi(this.filterApi("title", event.target.value));
-            this.props.searchString({searchKey:"titleSearch", searchValue:event.target.value, });   
+            this.props.searchPostResultsAction(this.filterApi("title", event.target.value));
+            this.props.searchPostStringAction({searchKey:"titleSearch", searchValue:event.target.value, });   
         }
     }
 
@@ -120,9 +120,9 @@ const mapStateToProps = (state, props) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        searchApi,
-        searchString,
-        getPostsDataApi
+        searchPostResultsAction,
+        searchPostStringAction,
+        getAllPostsAction
     },dispatch)
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);
