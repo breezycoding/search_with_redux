@@ -8,6 +8,7 @@ import postsDataReducer from "../reducers/getAllPosts";
 import usersReducer from "../reducers/getAllUsers";
 import selectedUserReducer from "../reducers/selectedUser";
 import getAllTodosReducer from "../reducers/getAllTodos";
+import getResourcesByUsersReducer from "../reducers/getResourcesByUsers";
 
 export default () => {
 	const middleware = applyMiddleware(Async, reduxThunk);
@@ -18,7 +19,8 @@ export default () => {
 			users: usersReducer,
 			postsData: postsDataReducer,
 			currentUser: selectedUserReducer,
-			getAllTodos: getAllTodosReducer
+			getAllTodos: getAllTodosReducer,
+			getResourcesByUsers: getResourcesByUsersReducer
 		}),
 		compose(middleware)
 	);

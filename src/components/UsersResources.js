@@ -5,8 +5,10 @@ import {bindActionCreators} from 'redux';
 import { getAllUsers } from "../redux/actions/getAllUsers";
 import { getAllPostsAction } from '../redux/actions/getAllPosts';
 import { getAllTodosAction } from '../redux/actions/getAllTodos';
+import { getResourcesByUsersAction } from '../redux/actions/getResourcesByUsers';
 
 import {User} from "./User";
+import { UsersResourcesTable } from "./UsersResourcesTable";
 
 /* style components */
 import { Container } from "./styles/style_Base";
@@ -21,7 +23,9 @@ class UsersResources extends React.Component{
         super(props);
         this.state = {
             userId: null,
-            resources: POSTS
+            resources: POSTS,
+            hasResources: false,
+            arrResouces: []
         }
     }
 
@@ -61,21 +65,63 @@ class UsersResources extends React.Component{
         }
     }
 
+
     getResourcesByUserId = (event) => {
         event.preventDefault();
+        let resourcesType = this.state.resources === "posts" ? "posts" : "todos";
         if(this.state.userId){
+            this.setState({
+                hasResources:true
+            });
             Object.keys(this.getResources(this.state.resources)).map((index) => {
                 if(this.getResources(this.state.resources)[index].userId === parseInt(this.state.userId)){
-                    console.log(this.getResources(this.state.resources)[index]);
+                    this.props.getResourcesByUsersAction(resourcesType, this.getResources(this.state.resources)[index]);
                 }
             })
         }else{
+            this.setState({
+                hasResources:false
+            });
             alert("select user id");
         }
+    }
+
+    getResourcesHtm = () => {
+        let arr = [];
+        Object.keys(this.props.getResourcesByUsers).map((index) => {
+            if(this.props.getResourcesByUsers[index].resourcesType === "posts"){
+                arr.push(this.props.getResourcesByUsers[index].data);
+                /* const {body, id, title, userId} = this.props.getResourcesByUsers[index].data;
+                return(
+                    <fieldset>
+                        <legend>post userId: {userId}</legend>
+                        <p>post body: {body}</p>
+                        <p>post id: {id}</p>
+                        <p>post title: {title}</p>
+                    </fieldset>
+                );  */
+                
+            }
+            if(this.props.getResourcesByUsers[index].resourcesType === "todos"){
+                /* const {completed, id, title, userId} = this.props.getResourcesByUsers[index].data;
+                return( 
+                    <fieldset>
+                        <legend>todos userId: {userId}</legend>
+                        <p>todos status: {completed}</p>
+                        <p>todos id: {id}</p>
+                        <p>todos title: {title}</p>
+                    </fieldset>
+                );  */
+            }
+        });
+        console.log(arr);
         
     }
 
+
 	render(){
+        //console.log(this.props.getResourcesByUsers);
+        
 		return(
 			<section id="resource_tables">
 				<Container>
@@ -99,6 +145,7 @@ class UsersResources extends React.Component{
                         <button>submit</button>
                     </form>
                     {this.getUser()}
+                    {this.state.hasResources && this.getResourcesHtm()}
 				</Container>
 			</section>
 		)
@@ -109,14 +156,16 @@ const mapStateToProps = (state, props) => {
 	return {
         users: state.users,
         postsData: state.postsData,
-        getAllTodos: state.getAllTodos
+        getAllTodos: state.getAllTodos,
+        getResourcesByUsers: state.getResourcesByUsers
 	};
 };
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         getAllUsers,
         getAllPostsAction,
-        getAllTodosAction
+        getAllTodosAction,
+        getResourcesByUsersAction
     },dispatch)
 };
 

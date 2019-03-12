@@ -6,16 +6,18 @@ export const User = (props) => {
     const {companyName, catchPhrase, bs} = company;
     return(
         <div>
-            <p>id: {id}</p>
-            <p>name: {name}</p>
-            <p>username: {username}</p>
-            <p>email: {email}</p>
-            <p>address: {suite} {street} {city} {zipcode}</p>
-            <p>phone: {phone}</p>
-            <p>website: {website}</p>
-            <p>company name: {companyName}</p>
-            <p>catchPhrase: {catchPhrase}</p>
-            <p>bs: {bs}</p>
+            <fieldset>
+                <legend>user id: {id}</legend>
+                <p>name: {name}</p>
+                <p>username: {username}</p>
+                <p>email: {email}</p>
+                <p>address: {suite} {street} {city} {zipcode}</p>
+                <p>phone: {phone}</p>
+                <p>website: {website}</p>
+                <p>company name: {companyName}</p>
+                <p>catchPhrase: {catchPhrase}</p>
+                <p>bs: {bs}</p>
+            </fieldset>
         </div>
     );
 }
