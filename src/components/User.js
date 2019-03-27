@@ -1,12 +1,16 @@
 import React from "react";
 
 export const User = (props) => {
-    const { id, name, username, email, address, phone, website, company} = props;
+    /* const { id, name, username, email, address, phone, website, company} = props;
     const { street, suite, city, zipcode} = address;
-    const {companyName, catchPhrase, bs} = company;
+    const {companyName, catchPhrase, bs} = company; */
+    const { id, name, username, email, address, phone, website, company} = props;
+    //const {companyName, catchPhrase, bs} = company;
+    const { street, suite, city, zipcode, geo} = address;
+    console.log(address);
     return(
         <div>
-            <fieldset>
+            {/* <fieldset>
                 <legend>user id: {id}</legend>
                 <p>name: {name}</p>
                 <p>username: {username}</p>
@@ -17,7 +21,7 @@ export const User = (props) => {
                 <p>company name: {companyName}</p>
                 <p>catchPhrase: {catchPhrase}</p>
                 <p>bs: {bs}</p>
-            </fieldset>
+            </fieldset> */}
         </div>
     );
 }

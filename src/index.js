@@ -6,6 +6,8 @@ import configure_store from "./redux/store/configure_store";
 import "./styles/styles.scss"
 import "normalize.css/normalize.css"
 
+import "@babel/polyfill";
+
 const store = configure_store();
 
 const jsx = (
